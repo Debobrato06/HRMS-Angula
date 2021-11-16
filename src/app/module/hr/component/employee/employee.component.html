@@ -1,0 +1,308 @@
+
+<nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: darkcyan;">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/admin/admin"  class="nav-link" routerLinkActive="active">Admin</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/employees"  class="nav-link" routerLinkActive="active">Employee</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/deperments"  class="nav-link" routerLinkActive="active">Deperment</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/designations"  class="nav-link" routerLinkActive="active">Designation</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveType"  class="nav-link" routerLinkActive="active">Leave Type</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveApp"  class="nav-link" routerLinkActive="active">Leave App</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/report/reports"  class="nav-link" routerLinkActive="active">Reports</a>
+    </li>
+
+  </ul>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Log out</a>
+    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/admin/registration"  class="nav-link" routerLinkActive="active">Registration</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Login</a>-->
+<!--    </li>-->
+  </ul>
+
+</nav>
+
+
+
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>{{message}}</strong>
+    </ngb-alert>
+  </p>
+</div>
+
+<!--Form-->
+<div class="div-section">
+  <div class="section-header">
+    <h1>Emoplyee Form</h1>
+  </div>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="submit()">
+<!--    <mat-form-field>-->
+<!--      <mat-label>ID</mat-label>-->
+<!--      <input formControlName="id" matInput readonly>-->
+<!--    </mat-form-field>-->
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Photo</mat-label>
+      <input formControlName="photo" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Code</mat-label>
+      <input formControlName="code" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Employee Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Employee Father Name</mat-label>
+      <input formControlName="fatherName" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>DOB</mat-label>
+      <input type="date" formControlName="dob" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>DOJ</mat-label>
+      <input type="date" formControlName="doj" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>NID</mat-label>
+      <input formControlName="nid" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>GENDER</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option *ngFor="let gender of genders" [value]="gender.name" >
+          {{gender.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>EMAIL</mat-label>
+      <input type="email" formControlName="email" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>MOBILE NO</mat-label>
+      <input formControlName="mobileNo" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>USER NAME</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option *ngFor="let DROPDOWN_LIST_User of modelUserList" [value]="DROPDOWN_LIST_User.id">
+          {{DROPDOWN_LIST_User.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>DEPT NAME</mat-label>
+      <mat-select formControlName="deptId">
+        <mat-option *ngFor="let DROPDOWN_LIST_Dept of modelDeptList" [value]="DROPDOWN_LIST_Dept.id">
+          {{DROPDOWN_LIST_Dept.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>DESG NAME</mat-label>
+      <mat-select formControlName="desgId">
+        <mat-option *ngFor="let DROPDOWN_LIST_Desg of modelDesgList" [value]="DROPDOWN_LIST_Desg.id">
+          {{DROPDOWN_LIST_Desg.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>SUPERVISOR NAME</mat-label>
+      <mat-select formControlName="supervisorId">
+        <mat-option *ngFor="let DROPDOWN_LIST_SUPERVISOR of modelList" [value]="DROPDOWN_LIST_SUPERVISOR.id">
+          {{DROPDOWN_LIST_SUPERVISOR.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-checkbox formControlName="active">Active</mat-checkbox>
+    <br/>
+    <button type="button" (click)="clear()" mat-stroked-button color="accent">Clear</button>
+    &nbsp;
+    <button type="submit" [disabled]="!employeeForm.valid" mat-raised-button color="primary">Submit</button>
+  </form>
+
+</div>
+
+<!--Table
+
+
+
+-->
+<div class="div-section">
+
+  <div class="section-header">
+    <h1>Emoplyee List</h1>
+  </div>
+
+
+  <mat-form-field fxFlex="100%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Photo Column -->
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef> Photo</th>
+      <td mat-cell *matCellDef="let row"> {{row.photo}} </td>
+    </ng-container>
+
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef> Code</th>
+      <td mat-cell *matCellDef="let row"> {{row.code}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Father Name Column -->
+    <ng-container matColumnDef="fatherName">
+      <th mat-header-cell *matHeaderCellDef>Father Name</th>
+      <td mat-cell *matCellDef="let row"> {{row.fatherName}} </td>
+    </ng-container>
+
+    <!-- DOB Column -->
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef>DOB</th>
+      <td mat-cell *matCellDef="let row"> {{row.dob}} </td>
+    </ng-container>
+
+    <!-- DOJ Column -->
+    <ng-container matColumnDef="doj">
+      <th mat-header-cell *matHeaderCellDef>DOJ</th>
+      <td mat-cell *matCellDef="let row"> {{row.doj}} </td>
+    </ng-container>
+
+    <!-- NID Column -->
+    <ng-container matColumnDef="nid">
+      <th mat-header-cell *matHeaderCellDef>NID</th>
+      <td mat-cell *matCellDef="let row"> {{row.nid}} </td>
+    </ng-container>
+
+    <!-- GENDER Column -->
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>GENDER</th>
+      <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+    </ng-container>
+
+    <!-- EMAIL Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>EMAIL</th>
+      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+    </ng-container>
+
+    <!-- mobileNo Column -->
+    <ng-container matColumnDef="mobileNo">
+      <th mat-header-cell *matHeaderCellDef> MOBILE NO</th>
+      <td mat-cell *matCellDef="let row"> {{row.mobileNo}} </td>
+    </ng-container>
+
+    <!-- userId Column -->
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef> USER ID</th>
+      <td mat-cell *matCellDef="let row"> {{row.userId}} </td>
+    </ng-container>
+
+    <!-- deptId Column -->
+    <ng-container matColumnDef="deptId">
+      <th mat-header-cell *matHeaderCellDef> DEPT ID</th>
+      <td mat-cell *matCellDef="let row"> {{row.deptId}} </td>
+    </ng-container>
+
+    <!-- desgId Column -->
+    <ng-container matColumnDef="desgId">
+      <th mat-header-cell *matHeaderCellDef> DESG ID</th>
+      <td mat-cell *matCellDef="let row"> {{row.desgId}} </td>
+    </ng-container>
+
+    <!-- supervisorId Column -->
+    <ng-container matColumnDef="supervisorId">
+      <th mat-header-cell *matHeaderCellDef> SUPERVISOR ID</th>
+      <td mat-cell *matCellDef="let row"> {{row.supervisorId}} </td>
+    </ng-container>
+
+    <!-- Active Column -->
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef> Active</th>
+      <td mat-cell *matCellDef="let row"> {{row.active}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let row">
+
+        <button (click)="edit(row)" mat-fab color="accent" aria-label="Example icon button with a edit icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button (click)="delete(row)" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Define display cloumn -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[1,2, 3, 4, 5]"></mat-paginator>
+
+</div>
+
+

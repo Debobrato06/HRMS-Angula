@@ -1,0 +1,145 @@
+
+<nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: darkcyan;">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/admin/registration"  class="nav-link" routerLinkActive="active">Registration</a>
+    </li>
+    <li class="nav-item">
+      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Login</a>
+    </li>
+  </ul>
+</nav>
+
+
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>{{message}}</strong>
+    </ngb-alert>
+  </p>
+</div>
+
+<div class="section-header">
+  <h1>Registration</h1>
+</div>
+<mat-card class="my-card">
+  <mat-card-content>
+
+    <form class="my-form" [formGroup]="registrationForm">
+
+<!--      <mat-form-field  class="full-width">-->
+<!--        <mat-label>Photo</mat-label>-->
+<!--        <input formControlName="photo" matInput>-->
+<!--      </mat-form-field>-->
+
+      <mat-form-field  class="full-width">
+        <mat-label>Code</mat-label>
+        <input formControlName="code" matInput required>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>User Name</mat-label>
+        <input formControlName="name" matInput required>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>EMAIL</mat-label>
+        <input type="email" formControlName="email" matInput required>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>MOBILE NO</mat-label>
+        <input formControlName="mobileNo" matInput required>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>PASSWORD</mat-label>
+        <input type="password" formControlName="password" matInput required>
+      </mat-form-field>
+      <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+        <div *ngIf="f.password.errors.required">Password is required.</div>
+      </div>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>Retype PASSWORD</mat-label>
+        <input type="password" formControlName="matchPassword" matInput required>
+      </mat-form-field>
+      <div *ngIf="f.matchPassword.touched && f.matchPassword.invalid" class="alert alert-danger">
+        <div *ngIf="f.matchPassword.errors.required">Password is required.</div>
+        <div *ngIf="f.matchPassword.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+      </div>
+      &nbsp;
+<!--      <mat-checkbox formControlName="active">Active</mat-checkbox>-->
+      <br/>
+      <button type="button" (click)="clear()" mat-stroked-button color="accent">Clear</button>
+      &nbsp;
+<!--      <button type="submit" [disabled]="!registrationForm.valid" mat-raised-button color="primary">Submit</button>-->
+      <button type="submit"
+              (click)="submit()"
+              [disabled]="!registrationForm.valid"
+              mat-raised-button color="primary">
+        Submit
+      </button>
+    </form>
+  </mat-card-content>
+<!--&lt;!&ndash;</mat-card>   [formGroup]="registrationForm"&ndash;&gt;-->
+
+
+<!--<div class="container">-->
+<!--  <div class="card card-container">-->
+<!--    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>-->
+<!--    <form name="form-signup"  (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>-->
+<!--      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">-->
+<!--        {{errorMessage}}-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !name.valid}">-->
+<!--        <label for="code">Code</label>-->
+<!--        <input type="text" name="code" class="form-control" id="code" [(ngModel)]="model.code" #name="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !name.valid">-->
+<!--          Full name is required.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !name.valid}">-->
+<!--        <label for="name">Full Name</label>-->
+<!--        <input type="text" name="name" class="form-control" id="name" [(ngModel)]="model.name" #name="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !name.valid">-->
+<!--          Full name is required.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !username.valid}">-->
+<!--        <label for="email">Email</label>-->
+<!--        <input type="text" name="email" class="form-control" id="email" [(ngModel)]="model.email" #username="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !username.valid">-->
+<!--          Username is required.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !username.valid}">-->
+<!--        <label for="mobileNo">Phone Number</label>-->
+<!--        <input type="text" name="mobileNo" class="form-control" id="mobileNo" [(ngModel)]="model.mobileNo" #username="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !username.valid">-->
+<!--          Username is required.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">-->
+<!--        <label for="password">Password</label>-->
+<!--        <input type="password" name="password" class="form-control" id="password" [(ngModel)]="model.password" #password="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !password.valid">-->
+<!--          Password is required.-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">-->
+<!--        <label for="matchPassword">Match Password</label>-->
+<!--        <input type="password" name="matchPassword" class="form-control" id="matchPassword" [(ngModel)]="model.matchPassword" #password="ngModel" required/>-->
+<!--        <div class="alert alert-danger" *ngIf="f.submitted && !password.valid">-->
+<!--          Password is required.-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <div *ngIf="f.matchPassword.touched && f.matchPassword.invalid" class="alert alert-danger">&ndash;&gt;-->
+<!--&lt;!&ndash;          <div *ngIf="f.matchPassword.errors.required">Password is required.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div *ngIf="f.matchPassword.errors.confirmedValidator">Password and Confirm Password must be match.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>-->
+<!--    </form>-->
+<!--    <a href="/login" class="btn btn-link">I have an Account!</a>-->
+<!--  </div>-->
+<!--</div>-->

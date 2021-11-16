@@ -1,0 +1,10 @@
+<h3>You selected department with id = {{userId}}</h3>
+
+<li *ngFor="let users of modelList">
+  <span class="badge">{{users.id}}</span> {{users.name}}
+
+</li>
+
+<div>
+  <button (click)="gotoDepartments()">Back</button>
+</div>

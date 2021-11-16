@@ -1,0 +1,258 @@
+
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkcyan;">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/admin/admin"  class="nav-link" routerLinkActive="active">Admin</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/employees"  class="nav-link" routerLinkActive="active">Employee</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/deperments"  class="nav-link" routerLinkActive="active">Deperment</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/designations"  class="nav-link" routerLinkActive="active">Designation</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveType"  class="nav-link" routerLinkActive="active">Leave Type</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveApp"  class="nav-link" routerLinkActive="active">Leave App</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/report/reports"  class="nav-link" routerLinkActive="active">Reports</a>
+    </li>
+
+  </ul>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Log out</a>
+    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/admin/registration"  class="nav-link" routerLinkActive="active">Registration</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Login</a>-->
+<!--    </li>-->
+  </ul>
+
+</nav>
+
+
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>{{message}}</strong>
+    </ngb-alert>
+  </p>
+</div>
+
+<!--Form-->
+<div class="div-section">
+
+  <div class="section-header">
+    <h1>Leave App Form</h1>
+  </div>
+
+  <form [formGroup]="leaveAppForm" (ngSubmit)="submit()">
+<!--    <mat-form-field>-->
+<!--      <mat-label>ID</mat-label>-->
+<!--      <input formControlName="id" matInput readonly>-->
+<!--    </mat-form-field>-->
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Application Date</mat-label>
+      <input type="date" formControlName="appDate" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>From Date</mat-label>
+      <input type="date" formControlName="fromDate" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>To Date</mat-label>
+      <input type="date" formControlName="toDate" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>ENTRY TYPE</mat-label>
+      <mat-select formControlName="entry">
+        <mat-option *ngFor="let entryType of entrys" [value]="entryType.name">
+          {{entryType.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>REASON</mat-label>
+      <input formControlName="reason" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>EMPOLYEE ID</mat-label>
+      <mat-select formControlName="employeeId">
+                <mat-option *ngFor="let DROPDOWN_LIST_EMPLOYEE of modelEmployeeList" [value]="DROPDOWN_LIST_EMPLOYEE.id">
+                  {{DROPDOWN_LIST_EMPLOYEE.id}}
+                </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>LEAVE TYPE ID</mat-label>
+      <mat-select formControlName="leaveTypeId">
+        <mat-option *ngFor="let DROPDOWN_LIST_LeaveType of modelLeaveTypeList" [value]="DROPDOWN_LIST_LeaveType.id">
+          {{DROPDOWN_LIST_LeaveType.id}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <!--//  'responsiblePersonId', 'remarks'-->
+    <mat-form-field>
+      <mat-label>ON LEASVE CONTACT NO.</mat-label>
+      <input formControlName="onLeaveContactNo" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>RESPONSIBLE PERSON ID</mat-label>
+      <mat-select formControlName="responsiblePersonId">
+                <mat-option *ngFor="let DROPDOWN_LIST_ResponsiblePersonId of modelEmployeeList" [value]="DROPDOWN_LIST_ResponsiblePersonId.id">
+                  {{DROPDOWN_LIST_ResponsiblePersonId.id}}
+                </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>REMARKS</mat-label>
+      <input  formControlName="remarks" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-checkbox formControlName="active">Active</mat-checkbox>
+    <br/>
+    <button type="button" (click)="clear()" mat-stroked-button color="accent">Clear</button>
+    &nbsp;
+    <button type="submit" [disabled]="!leaveAppForm.valid" mat-raised-button color="primary">Submit</button>
+  </form>
+
+</div>
+
+<!--Table-->
+<div class="div-section">
+  <div class="section-header">
+    <h1>Leave App List</h1>
+  </div>
+
+
+    <mat-form-field fxFlex="100%">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table [dataSource]= "dataSource" class="mat-elevation-z8" >
+
+      <!-- id Column -->matSort matSortStart="asc"
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="appDate">
+        <th mat-header-cell *matHeaderCellDef> Application Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.appDate}} </td>
+      </ng-container>
+
+      <!-- EMAIL Column -->
+      <ng-container matColumnDef="fromDate">
+        <th mat-header-cell *matHeaderCellDef>From Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.fromDate}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="toDate">
+        <th mat-header-cell *matHeaderCellDef> To Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.toDate}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="entry">
+        <th mat-header-cell *matHeaderCellDef> Entry</th>
+        <td mat-cell *matCellDef="let row"> {{row.entry}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="reason">
+        <th mat-header-cell *matHeaderCellDef> Reason</th>
+        <td mat-cell *matCellDef="let row"> {{row.reason}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="employeeId">
+        <th mat-header-cell *matHeaderCellDef>Employee Id</th>
+        <td mat-cell *matCellDef="let row"> {{row.employeeId}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="leaveTypeId">
+        <th mat-header-cell *matHeaderCellDef>Leave Type Id</th>
+        <td mat-cell *matCellDef="let row"> {{row.leaveTypeId}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="onLeaveContactNo">
+        <th mat-header-cell *matHeaderCellDef>On Leave Contact No.</th>
+        <td mat-cell *matCellDef="let row"> {{row.onLeaveContactNo}} </td>
+      </ng-container>
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="responsiblePersonId">
+        <th mat-header-cell *matHeaderCellDef>Responsible Person Id</th>
+        <td mat-cell *matCellDef="let row"> {{row.responsiblePersonId}} </td>
+      </ng-container>
+
+      <!-- mobileNo Column -->
+      <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef>Rremarks</th>
+        <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+      </ng-container>
+      'reason' , 'employeeId' , 'leaveTypeId' ,
+      'onLeaveContactNo' , 'responsiblePersonId', 'remarks' , 'active'
+
+      <!-- Active Column -->
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef> Active</th>
+        <td mat-cell *matCellDef="let row"> {{row.active}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let row">
+
+          <button (click)="edit(row)" mat-fab color="accent" aria-label="Example icon button with a edit icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button (click)="delete(row)" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Define display cloumn -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+    <mat-paginator [pageSize]="2" [pageSizeOptions]="[1,2, 3, 4, 5]"></mat-paginator>
+
+</div>
+
+

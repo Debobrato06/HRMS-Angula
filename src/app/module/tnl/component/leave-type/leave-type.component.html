@@ -1,0 +1,162 @@
+
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkcyan;">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/admin/admin"  class="nav-link" routerLinkActive="active">Admin</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/employees"  class="nav-link" routerLinkActive="active">Employee</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/deperments"  class="nav-link" routerLinkActive="active">Deperment</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/hr/designations"  class="nav-link" routerLinkActive="active">Designation</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveType"  class="nav-link" routerLinkActive="active">Leave Type</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/tnl/leaveApp"  class="nav-link" routerLinkActive="active">Leave App</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="button" routerLink="/report/reports"  class="nav-link" routerLinkActive="active">Reports</a>
+    </li>
+
+  </ul>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Log out</a>
+    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/admin/registration"  class="nav-link" routerLinkActive="active">Registration</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Login</a>-->
+<!--    </li>-->
+  </ul>
+
+</nav>
+
+
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>{{message}}</strong>
+    </ngb-alert>
+  </p>
+</div>
+
+<!--Form-->
+<div class="div-section">
+
+  <div class="section-header">
+    <h1>Leave Type Form</h1>
+  </div>
+
+  <form [formGroup]="leaveTypeForm" (ngSubmit)="submit()">
+<!--    <mat-form-field>-->
+<!--      <mat-label>ID</mat-label>-->
+<!--      <input formControlName="id" matInput readonly>-->
+<!--    </mat-form-field>-->
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Leave Type Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Allowed Leave No Monthly</mat-label>
+      <input type="number" formControlName="allowedLeaveNoMonthly" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <mat-label>Allowed Leave No Yearly</mat-label>
+      <input type="number" formControlName="allowNoOfLeaveYearly" matInput>
+    </mat-form-field>
+    &nbsp;
+    <mat-checkbox formControlName="active">Active</mat-checkbox>
+    <br/>
+    <button type="button" (click)="clear()" mat-stroked-button color="accent">Clear</button>
+    &nbsp;
+    <button type="submit" [disabled]="!leaveTypeForm.valid" mat-raised-button color="primary">Submit</button>
+  </form>
+
+</div>
+
+<!--Table-->
+<div class="div-section">
+  <div class="section-header">
+    <h1>Leave Type List</h1>
+  </div>
+
+
+  <mat-form-field fxFlex="100%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortStart="asc">
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- EMAIL Column -->
+    <ng-container matColumnDef="allowedLeaveNoMonthly">
+      <th mat-header-cell *matHeaderCellDef>Allowed Leave No Monthly</th>
+      <td mat-cell *matCellDef="let row"> {{row.allowedLeaveNoMonthly}} </td>
+    </ng-container>
+
+    <!-- mobileNo Column -->
+    <ng-container matColumnDef="allowNoOfLeaveYearly">
+      <th mat-header-cell *matHeaderCellDef> Allowed Leave No Yearly</th>
+      <td mat-cell *matCellDef="let row"> {{row.allowNoOfLeaveYearly}} </td>
+    </ng-container>
+
+    <!-- Active Column -->
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef> Active</th>
+      <td mat-cell *matCellDef="let row"> {{row.active}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let row">
+
+        <button (click)="edit(row)" mat-fab color="accent" aria-label="Example icon button with a edit icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button (click)="delete(row)" mat-fab color="warn" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Define display cloumn -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[1,2, 3, 4, 5]"></mat-paginator>
+
+</div>
+
+

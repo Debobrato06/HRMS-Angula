@@ -1,0 +1,68 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <a class="navbar-brand">TIME&LEAVE</a>-->
+<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+
+<!--  <div class="collapse navbar-collapse modify" id="navbarSupportedContent">-->
+<!--    <a class="nav-link">Login</a>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+
+<nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: darkcyan;">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="button" routerLink="/admin/registration"  class="nav-link" routerLinkActive="active">Registration</a>
+    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="button" routerLink="/login"  class="nav-link" routerLinkActive="active">Login</a>-->
+<!--    </li>-->
+  </ul>
+</nav>
+<div *ngIf="message">
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>{{message}}</strong>
+    </ngb-alert>
+  </p>
+</div>
+
+
+<!--<mat-toolbar>-->
+
+<!--</mat-toolbar>-->
+<div class="section-header">
+  <h1>Login</h1>
+</div>
+
+
+<mat-card class="my-card">
+  <mat-card-content>
+
+    <form class="my-form" [formGroup]="loginForm">
+
+      <mat-form-field  class="full-width">
+        <mat-label>Email Address</mat-label>
+        <input formControlName="loginId" matInput>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field  class="full-width">
+        <mat-label>PASSWORD</mat-label>
+        <input type="password" formControlName="password" matInput >
+      </mat-form-field>
+
+      <br/>
+      <button type="button" (click)="clear()" mat-stroked-button color="accent">Clear</button>
+      &nbsp;
+      <button type="submit"
+              (click)="login()"
+              [disabled]="!loginForm.valid"
+              mat-raised-button color="primary">
+        Login
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

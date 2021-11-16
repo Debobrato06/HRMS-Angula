@@ -1,0 +1,35 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.footer-container{
+  background-color: lightslategray;
+  text-align: center;
+}
+
+
+.navbar-brand{
+  background: darkslategray;
+  color: white;
+  width: 15%;
+  text-align: center;
+  font-weight: 500;
+}
+/*////*/
+.modify{
+  background: darkslategray;
+}
+.modify ul li a{
+  color: white;
+}
+
+.modify ul li a:hover{
+  color: black;
+  background: forestgreen;
+}
+
+.page-footer{
+  background: darkslategray;
+  color: darkgray;
+}
+
