@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Registration} from '../../model/registration';
-import {RegistrationResponse} from "../../model/registration-response";
+import {RegistrationResponse} from '../../model/registration-response';
 
 @Injectable({
   providedIn: 'root'

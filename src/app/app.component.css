@@ -3,8 +3,9 @@
 }
 
 .footer-container{
-  background-color: lightslategray;
+  background-color: #04AB9C  ;
   text-align: center;
+  color: white;
 }
 
 
@@ -16,20 +17,20 @@
   font-weight: 500;
 }
 /*////*/
-.modify{
-  background: darkslategray;
-}
-.modify ul li a{
-  color: white;
-}
+/*.modify{*/
+/*  background: darkslategray;*/
+/*}*/
+/*.modify ul li a{*/
+/*  color: white;*/
+/*}*/
 
-.modify ul li a:hover{
-  color: black;
-  background: forestgreen;
-}
+/*.modify ul li a:hover{*/
+/*  color: black;*/
+/*  background: forestgreen;*/
+/*}*/
 
-.page-footer{
-  background: darkslategray;
-  color: darkgray;
-}
+/*.page-footer{*/
+/*  background: darkslategray;*/
+/*  color: darkgray;*/
+/*}*/
 

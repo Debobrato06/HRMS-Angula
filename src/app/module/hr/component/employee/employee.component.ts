@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import {Designation} from '../../model/designation';
 import {DesignationService} from '../../service/desg/designation.service';
 import {UserEmp} from '../../model/user';
-import {UserServiceService} from '../../service/user/user-service.service';
+import {UserService} from '../../service/user/user.service';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 
@@ -51,7 +51,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     private service: EmployeeService,
     private depermentService: DepermentService,
     private designationService: DesignationService,
-    private userServiceService: UserServiceService,
+    private userService: UserService,
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -122,7 +122,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
   // tslint:disable-next-line:typedef
   getUserData(): any
   {
-    this.userServiceService.getList().subscribe(res => {
+    this.userService.getList().subscribe(res => {
         this.modelUserList = res.content;
       }
     );
