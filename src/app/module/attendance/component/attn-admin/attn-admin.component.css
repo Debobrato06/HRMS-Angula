@@ -1,0 +1,17 @@
+.div-section{
+  width: 100%;
+  float: left;
+}
+
+table {
+  width: 100%;
+}
+
+.section-header{
+  background-color: lightseagreen;
+  text-align: center;
+  margin-top: 5px;
+}
+h1 {
+  font-size: 20px;
+}

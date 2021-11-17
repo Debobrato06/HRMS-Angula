@@ -9,7 +9,7 @@ import {Report} from '../model/report';
 export class ReportServiceService {
 
   BASE_URL = 'http://localhost:9094';
-  API_URL = this.BASE_URL + '/report/reportApi/report';
+  API_URL = this.BASE_URL + '/report/api/report';
   constructor(
     private http: HttpClient
   ) { }
@@ -17,7 +17,7 @@ export class ReportServiceService {
   printReport(model: Report): Observable<Blob> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.http.post(
-      this.API_URL, model,
+      this.API_URL + '/', model,
       { headers, responseType: 'blob'}
     );
   }

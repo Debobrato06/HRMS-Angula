@@ -11,7 +11,7 @@ import {AmdUser} from '../../model/admin';
 export class AmdUserServiceService {
 
   BASE_URL = 'http://localhost:9091';
-  API_URL = this.BASE_URL + '/admin/user/';
+  API_URL = this.BASE_URL + '/admin/api/user/';
 
   constructor(
     private http: HttpClient

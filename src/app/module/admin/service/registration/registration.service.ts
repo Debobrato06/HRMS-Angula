@@ -10,7 +10,7 @@ import {RegistrationResponse} from '../../model/registration-response';
 export class RegistrationService {
 
   BASE_URL = 'http://localhost:9091';
-  API_URL = this.BASE_URL + '/admin/auth/registation/';
+  API_URL = this.BASE_URL + '/admin/api/auth/registation/';
 
   public currentUser: Observable<Registration>;
   private currentUserSubject: BehaviorSubject<Registration>;

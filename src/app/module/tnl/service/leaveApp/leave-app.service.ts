@@ -9,7 +9,7 @@ import {LeaveApp} from '../../model/leaveApp/leave-app';
 export class LeaveAppService {
 
   BASE_URL = 'http://localhost:9093';
-  API_URL = this.BASE_URL + '/leave/leaveAppApi/';
+  API_URL = this.BASE_URL + '/leave/api/leave-app/';
 
   constructor(
     private http: HttpClient

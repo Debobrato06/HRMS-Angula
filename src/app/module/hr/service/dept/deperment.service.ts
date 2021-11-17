@@ -9,7 +9,7 @@ import {Deperment} from '../../model/deperment';
 export class DepermentService {
 
   BASE_URL = 'http://localhost:9090';
-  API_URL = this.BASE_URL + '/hr/deptApi/';
+  API_URL = this.BASE_URL + '/hr/api/dept/';
 
   constructor(
     private http: HttpClient

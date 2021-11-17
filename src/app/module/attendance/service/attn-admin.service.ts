@@ -12,7 +12,7 @@ export class AttnAdminService {
 
 
   BASE_URL = 'http://localhost:9095';
-  API_URL = this.BASE_URL + '/attendance/attnAdminApi/';
+  API_URL = this.BASE_URL + '/attendance/api/attn-admin/';
   POST_API = this.API_URL + 'save';
 
   constructor(

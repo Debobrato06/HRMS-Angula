@@ -26,7 +26,7 @@ export class AttnAdminComponent implements OnInit {
   model: AttnAdmin =  new AttnAdmin();
   modelList: AttnAdmin[] = new Array();
   dataSource = new MatTableDataSource();
-  displayedColumns = ['id' , 'appDate' , 'userId' , 'empId' , 'onMoment' , 'in' , 'out' , 'remark'];
+  displayedColumns = ['id' , 'appDate' , 'userId' , 'empId' , 'onMoment' , 'in' , 'out' , 'remarks', 'action'];
 
   modelEmpList: Observable<Employee[]>;
 
@@ -45,6 +45,7 @@ export class AttnAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormValue();
+    this.getAll();
     this.getUserData();
     this.getEmployeeData();
   }
@@ -57,7 +58,7 @@ export class AttnAdminComponent implements OnInit {
       onMoment: ['', [Validators.required]],
       in: ['', [Validators.required]],
       out: ['', [Validators.required]],
-      remark: ['', ''],
+      remarks: ['', ''],
 
     });
   }
@@ -130,7 +131,7 @@ export class AttnAdminComponent implements OnInit {
     this.model.onMoment = this.attnAdminForm.value.onMoment;
     this.model.in = this.attnAdminForm.value.in;
     this.model.out = this.attnAdminForm.value.out;
-    this.model.remark = this.attnAdminForm.value.remark;
+    this.model.remarks = this.attnAdminForm.value.remarks;
 
   }
 

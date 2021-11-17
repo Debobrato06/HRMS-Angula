@@ -6,5 +6,5 @@ export class AttnAdmin {
   onMoment: Date;
   in: Date;
   out: Date;
-  remark: string;
+  remarks: string;
 }

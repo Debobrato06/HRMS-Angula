@@ -10,7 +10,7 @@ import {Employee} from '../../model/employee';
 export class EmployeeService {
 
   BASE_URL = 'http://localhost:9090';
-  API_URL = this.BASE_URL + '/hr/empApi/';
+  API_URL = this.BASE_URL + '/hr/api/emp/';
 
   constructor(
     private http: HttpClient

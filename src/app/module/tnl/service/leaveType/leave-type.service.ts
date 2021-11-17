@@ -9,7 +9,7 @@ import {LeaveType} from '../../model/leave-type';
 export class LeaveTypeService {
 
   BASE_URL = 'http://localhost:9093';
-  API_URL = this.BASE_URL + '/leave/leaveTypeApi/';
+  API_URL = this.BASE_URL + '/leave/api/leave-type/';
   REPORT = 'http://localhost:9099/report/pdf';
 
   constructor(

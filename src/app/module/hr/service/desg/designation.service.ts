@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 export class DesignationService {
 
   BASE_URL = 'http://localhost:9090';
-  API_URL = this.BASE_URL + '/hr/desgApi/';
+  API_URL = this.BASE_URL + '/hr/api/desg/';
 
   constructor(
     private http: HttpClient

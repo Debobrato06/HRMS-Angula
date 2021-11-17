@@ -25,6 +25,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 
 
+
 @NgModule({
   declarations: [AttnAdminComponent],
   imports: [
@@ -64,6 +65,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTableModule,
     NgbModule,
     FormsModule,
+
   ],
   providers: [
     AttnAdminService,
@@ -71,3 +73,4 @@ import {MatRadioModule} from '@angular/material/radio';
   ]
 })
 export class AttendanceModule { }
+

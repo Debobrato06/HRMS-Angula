@@ -12,7 +12,7 @@ export class LoginService {
 
 
   BASE_URL = 'http://localhost:9091';
-  API_URL = this.BASE_URL + '/admin/auth/login/';
+  API_URL = this.BASE_URL + '/admin/api/auth/login/';
 
 
   constructor(private http: HttpClient) {
